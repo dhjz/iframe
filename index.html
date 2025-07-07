@@ -33,6 +33,10 @@
     }
     
     if (matched) {
+      if (location.href.startsWith('https')) {
+        location.href=matched[0]
+        return;
+      }
       iframeBox.src = matched[0];
       document.title = matched[1] || '我的网页';
     } else {
