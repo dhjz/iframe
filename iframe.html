@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    iframe {
+      width: calc(100vw - 4px);
+      height: calc(100vh - 4px);
+      overflow: hidden;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="tip" style="display: none; text-align: center; margin: 20px; ">域名无效</div>
+  <iframe id="ifram-box" src="" frameborder="0"></iframe>
+  <script>
+    let iframeBox = document.getElementById('ifram-box');
+    if (startLoc('ai.')) {
+      iframeBox.src = 'http://home.199311.xyz:40001/'
+      document.title = 'AI对话助手'
+    } else {
+      // iframeBox.src = 'http://home.199311.xyz:40001/'
+      // document.title = 'AI对话助手'
+      document.getElementById('tip').style.display = 'block'
+      iframeBox.style.display = 'none'
+    }
+
+    function startLoc(val) {
+      return location.host.startsWith(val)
+    }
+  </script>
+</body>
+</html>
