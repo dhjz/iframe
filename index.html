@@ -35,10 +35,10 @@
     if (matched) {
       if (location.href.startsWith('https')) {
         location.href=matched[0]
-        return;
+      } else {
+        iframeBox.src = matched[0];
+        document.title = matched[1] || '我的网页';
       }
-      iframeBox.src = matched[0];
-      document.title = matched[1] || '我的网页';
     } else {
       // 如果没有匹配项，则执行 else 分支
       document.getElementById('tip').style.display = 'block';
