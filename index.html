@@ -17,23 +17,28 @@
 <body>
   <div id="tip" style="display: none; text-align: center; margin: 20px; ">域名无效</div>
   <iframe id="ifram-box" src="" frameborder="0"></iframe>
+  <script src="data.js"></script>
   <script>
     let iframeBox = document.getElementById('ifram-box');
-    if (startLoc('ai.')) {
-      iframeBox.src = 'http://home.199311.xyz:40001/'
-      document.title = 'AI对话助手'
-    } if (startLoc('alist.')) {
-      iframeBox.src = 'http://home.199311.xyz:25244/'
-      document.title = 'Home-Alist'
-    } else {
-      // iframeBox.src = 'http://home.199311.xyz:40001/'
-      // document.title = 'AI对话助手'
-      document.getElementById('tip').style.display = 'block'
-      iframeBox.style.display = 'none'
-    }
-
     function startLoc(val) {
       return location.host.startsWith(val)
+    }
+
+    let matched = null;
+    for (const key in data) {
+      if (startLoc(key)) {
+        matched = data[key];
+        break; // 找到第一个匹配项后停止
+      }
+    }
+    
+    if (matched) {
+      iframeBox.src = matched.src;
+      document.title = matched.title;
+    } else {
+      // 如果没有匹配项，则执行 else 分支
+      document.getElementById('tip').style.display = 'block';
+      iframeBox.style.display = 'none';
     }
   </script>
 </body>
